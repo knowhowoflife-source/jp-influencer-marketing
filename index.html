@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>일본 인플루언서 마케팅</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #fff;
+      color: #111;
+      font-family: 'Noto Sans KR', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 48px 20px 72px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* ── 프로필 ── */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+    }
+
+    .name {
+      font-size: 19px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: #777;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── 섹션 ── */
+    .section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111;
+      border-left: 3px solid #E8003A;
+      padding-left: 9px;
+    }
+
+    /* ── 진행 사례 그리드 ── */
+    .case-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .case-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    }
+
+    .case-item img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .case-label {
+      padding: 8px 10px;
+      background: #fafafa;
+    }
+
+    .case-name {
+      font-size: 11px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .case-sub {
+      font-size: 10px;
+      color: #aaa;
+      margin-top: 1px;
+    }
+
+    /* ── 메가와리 설명 ── */
+    .mega-info {
+      width: 100%;
+      background: #fff8f0;
+      border: 1px solid #ffe5c8;
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .mega-info-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .mega-info-text {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.65;
+    }
+
+    .mega-info-text strong {
+      color: #111;
+      font-size: 12px;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* ── 2월 매출 ── */
+    .feb-card {
+      width: 100%;
+      border: 1px solid #f0f0f0;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+
+    .feb-card img {
+      width: 100%;
+      display: block;
+    }
+
+    .feb-nums {
+      display: flex;
+      gap: 0;
+    }
+
+    .feb-num {
+      flex: 1;
+      padding: 14px 12px;
+      text-align: center;
+      border-top: 1px solid #f5f5f5;
+    }
+
+    .feb-num:first-child {
+      border-right: 1px solid #f5f5f5;
+    }
+
+    .feb-amount {
+      font-size: 14px;
+      font-weight: 800;
+      color: #111;
+      letter-spacing: -0.02em;
+    }
+
+    .feb-unit {
+      font-size: 11px;
+      font-weight: 400;
+      color: #999;
+    }
+
+    .feb-krw {
+      font-size: 11px;
+      font-weight: 600;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    .feb-growth {
+      font-size: 11px;
+      font-weight: 700;
+      color: #E8003A;
+      margin-top: 3px;
+    }
+
+    .feb-desc {
+      font-size: 10px;
+      color: #bbb;
+      margin-top: 1px;
+    }
+
+    /* ── 전환 카피 ── */
+    .copy-box {
+      width: 100%;
+      background: #f9f9f9;
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .copy-headline {
+      font-size: 16px;
+      font-weight: 800;
+      color: #111;
+      line-height: 1.5;
+    }
+
+    .copy-headline span {
+      color: #E8003A;
+    }
+
+    .copy-body {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    .copy-highlight {
+      background: #fff;
+      border-left: 3px solid #E8003A;
+      border-radius: 0 10px 10px 0;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    .copy-highlight strong {
+      color: #111;
+      font-weight: 700;
+    }
+
+    /* ── 박람회 박스 ── */
+    .expo-box {
+      width: 100%;
+      background: #111;
+      border-radius: 18px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      color: #fff;
+    }
+
+    .expo-tag {
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(232,0,58,0.2);
+      color: #ff6685;
+      border: 1px solid rgba(232,0,58,0.3);
+      border-radius: 20px;
+      padding: 4px 10px;
+      display: inline-block;
+    }
+
+    .expo-headline {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.45;
+      color: #fff;
+    }
+
+    .expo-headline span { color: #E8003A; }
+
+    .expo-stats {
+      display: flex;
+      gap: 0;
+      background: rgba(255,255,255,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .expo-stat {
+      flex: 1;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .expo-stat:first-child {
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .expo-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .expo-num span {
+      font-size: 13px;
+      font-weight: 500;
+      color: #aaa;
+    }
+
+    .expo-label {
+      font-size: 10px;
+      color: #888;
+      margin-top: 3px;
+    }
+
+    .expo-notice {
+      font-size: 12px;
+      color: #aaa;
+      line-height: 1.7;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 12px;
+    }
+
+    .expo-notice strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* ── 버튼 ── */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 17px 20px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-red {
+      background: #E8003A;
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(232,0,58,0.28);
+    }
+
+    .btn-insta {
+      background: linear-gradient(90deg, #833ab4, #fd1d1d, #fcb045);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: #111;
+      border: 1.5px solid #e5e5e5;
+    }
+
+    /* ── 구분선 ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #f3f3f3;
+    }
+
+    .footer {
+      font-size: 11px;
+      color: #ccc;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- 프로필 -->
+    <div class="profile">
+      <img class="logo" src="logo.png" alt="일본 인플루언서 마케팅" />
+      <div class="name">일본 인플루언서 마케팅</div>
+      <div class="tagline">일본 현지 인플루언서 섭외부터 매출 전환까지<br/>진짜 성과를 만드는 실행 파트너</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2026 2월 매출 -->
+    <div class="section">
+      <div class="section-title">💹 2026년 2월 메가와리 첫 참여 기업 큐텐 사례</div>
+
+      <!-- 메가와리란? -->
+      <div class="mega-info">
+        <div class="mega-info-icon">❓</div>
+        <div class="mega-info-text">
+          <strong>메가와리(メガ割)란?</strong>
+          큐텐 재팬(Qoo10 Japan)이 연 4회 진행하는 초대형 할인 축제로, 일본 최대 규모의 이커머스 이벤트입니다. 참여 기업은 평소 대비 수십~수백 배의 폭발적인 매출 증가를 경험합니다.
+        </div>
+      </div>
+
+      <div class="feb-card">
+        <img src="feb-result.png" alt="2026년 2월 거래 현황" />
+        <div class="feb-nums">
+          <div class="feb-num">
+            <div class="feb-amount">11,579,380<span class="feb-unit">円</span></div>
+            <div class="feb-krw">≈ 약 1억 1,000만원</div>
+            <div class="feb-growth">▲ 8,740%</div>
+            <div class="feb-desc">거래금액 (이전 기간 대비)</div>
+          </div>
+          <div class="feb-num">
+            <div class="feb-amount">899<span class="feb-unit">개</span></div>
+            <div class="feb-growth">▲ 6,940%</div>
+            <div class="feb-desc">거래상품 수량</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 전환 카피 -->
+    <div class="copy-box">
+      <div class="copy-headline">위 성과는 저희 파트너사가<br/><span>실제로 달성한 수치</span>입니다.</div>
+      <div class="copy-body">
+        단순한 광고 집행이 아닙니다.<br/>
+        인플루언서 선정부터 콘텐츠 기획, 큐텐 운영까지 — 저희가 전략적으로 설계한 결과입니다.
+      </div>
+      <div class="copy-highlight">
+        <strong>구체적인 진행 사례와 성과 데이터, 실제 운영 방식은<br/>오프라인 미팅을 통해서만 안내드리고 있습니다.</strong><br/>
+        관심 있으신 브랜드라면 아래 신청서를 남겨주세요.<br/>담당자가 직접 연락드립니다.
+      </div>
+    </div>
+
+    <!-- 박람회 섹션 -->
+    <div class="expo-box">
+      <div class="expo-tag">🎪 대규모 오프라인 행사 참여 확정</div>
+      <div class="expo-headline">일본 현지 대형 박람회<br/>참가가 <span>확정</span>되었습니다.</div>
+      <div class="expo-stats">
+        <div class="expo-stat">
+          <div class="expo-num">50,000<span>명+</span></div>
+          <div class="expo-label">전시 방문객 규모</div>
+        </div>
+        <div class="expo-stat">
+          <div class="expo-num">B2B · B2C · PR</div>
+          <div class="expo-label">타겟 유형</div>
+        </div>
+      </div>
+      <div class="expo-notice">
+        행사명·일정은 계약 파트너사에 한해 개별 안내드립니다.<br/><br/>
+        <strong>지금 신청하시면 행사 연계 특별 조건으로 진행 가능합니다.</strong>
+      </div>
+    </div>
+
+    <!-- 신청 -->
+    <div class="section">
+      <a class="btn btn-red" href="https://forms.gle/YOUR_FORM_LINK" target="_blank">
+        캠페인 신청하기
+      </a>
+      <a class="btn btn-insta" href="https://www.instagram.com/jp_influencer_marketing" target="_blank">
+        📸 @jp_influencer_marketing
+      </a>
+    </div>
+
+    <div class="footer">© 2026 일본 인플루언서 마케팅 · Moon Entertainment</div>
+
+  </div>
+</body>
+</html>
